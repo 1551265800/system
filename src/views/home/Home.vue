@@ -17,10 +17,7 @@
             </el-card>
             <el-card shadow="hover" style="margin-top: 20px; ">
                 <el-table :data="tableData">
-                    <el-table-column v-for="(val,key) of tableLabel" 
-                    :key="key"
-                    :prop="key" 
-                    :label="val">
+                    <el-table-column v-for="(val,key) of tableLabel" :key="key" :prop="key" :label="val">
 
                     </el-table-column>
                 </el-table>
@@ -35,34 +32,18 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
+import axios from 'axios'
 
-const tableData = reactive([
-    {
-        name: 'oppo',
-        todayBuy: 500,
-        monthBuy: 3500,
-        totalBuy: 22000
-    },
-    {
-        name: '华为',
-        todayBuy: 300,
-        monthBuy: 2200,
-        totalBuy: 2400
-    },
-    {
-        name: 'vivo',
-        todayBuy: 200,
-        monthBuy: 3501,
-        totalBuy: 5465
-    },
-    {
-        name: 'apple',
-        todayBuy: 188,
-        monthBuy: 6541,
-        totalBuy: 65168
-    },
-])
+async function getTableList() {
+    await axios.get("/home/getData").then((res) => {
+        tableData.value = res.data.data.tableData;
+    })
+}
+onMounted(() => {
+    getTableList();
+})
+let tableData = ref([])
 const tableLabel = reactive({
     name: "课程",
     todayBuy: "今日购买",

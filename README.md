@@ -6,4 +6,13 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
-## mock
+## mockjs
+ cnpm i mockjs -S
+ - 本地使用
+ `Mock.mock('/home/getData',homeApi.getHomeData) //homeApi.getHomeData是个函数 返回数据`
+ `async function getTableList() {`
+    `await axios.get("/home/getData").then((res) => {`
+      `  tableData.value = res.data.data.tableData;`
+`    })`
+`}`
+

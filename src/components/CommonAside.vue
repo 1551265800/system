@@ -1,21 +1,27 @@
 <template>
-    <el-aside width="200px">
-        <el-menu class="el-menu-vertical-demo aside" :collapse="false"> 
-            <el-menu-item :index="item.path" v-for="item in noChildren()" :key="item.path">
+    <el-aside :width='$store.state.isCollapse?"180px":"64px"'>
+        <el-menu 
+        class="el-menu-vertical-demo aside" 
+        :collapse="!$store.state.isCollapse"
+        :collapse-transition="false"> 
+        <h3 v-show="$store.state.isCollapse">后台管理</h3>
+        <h3 v-show="!$store.state.isCollapse">后台</h3>
+            <el-menu-item :index="item.path" v-for="item in noChildren()" :key="item.path" @click="clickMenu(item)">
                 <el-icon>
                     <component class="icons" :is="item.icon"></component>
                 </el-icon>
                 <span>{{item.lable}}</span>
             </el-menu-item>
-            <el-sub-menu :index="item.path" v-for="item in hasChildren()" :key="item.path">
+            <el-sub-menu :index="item.path" v-for="item in hasChildren()" :key="item.path"
+            >
                 <template #title>
                     <el-icon>
                         <component class="icons" :is="item.icon"></component>
                     </el-icon>
                     <span>{{item.lable}}</span>
                 </template>
-                <el-menu-item-group>
-                    <el-menu-item :index="subItem.path" v-for="(subItem,subIndex) in item.children" :key="subIndex">
+                <el-menu-item-group style="background-color: #f3f3f3; ">
+                    <el-menu-item :index="subItem.path" v-for="(subItem,subIndex) in item.children" :key="subIndex" @click="clickMenu(subItem)">
                         <el-icon>
                             <component class="icons" :is="subItem.icon"></component>
                         </el-icon>
@@ -29,8 +35,10 @@
 </template>
 
 <script>
+    import { useRouter } from 'vue-router';
 export default {
     setup() {
+        const router = useRouter()
         const list = [
             {
                 path: '/user',
@@ -68,9 +76,15 @@ export default {
         const hasChildren = () => {
             return list.filter(item => item.children)
         };
+        const clickMenu = (item)=>{
+            router.push({
+                name:item.name
+            });
+        }
         return {
             noChildren,
-            hasChildren
+            hasChildren,
+            clickMenu
         }
     }
 }
@@ -79,5 +93,21 @@ export default {
 <style lang="less" scoped>
 .aside{
     background-color: #f3f3f3;
+    overflow: hidden;
+}
+.icons{
+    width: 18px;
+    height: 18px;
+}
+.el-menu{
+    border-right: none;
+    h3{
+        line-height: 48px;
+        text-align: center;
+    }
+}
+.el-aside{
+    height: 100%;
+    display: flex;
 }
 </style>

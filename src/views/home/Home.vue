@@ -34,11 +34,16 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 import axios from 'axios'
-
+import api from '../../api/api'
 async function getTableList() {
-    await axios.get("/home/getData").then((res) => {
-        tableData.value = res.data.data.tableData;
-    })
+    /* await axios.get("https://www.fastmock.site/mock/d239c05527634d26672d840e9e59b765/api/home/getData").then((res) => {
+        if (res.data.code === 200) {
+            tableData.value = res.data.data.tableData;
+        }
+    }) */
+    let res = await api.getTableData();
+    tableData.value = res.tableData
+
 }
 onMounted(() => {
     getTableList();

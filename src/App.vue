@@ -8,4 +8,8 @@
   #app{
     height: 100%;
   }
+  html{
+    background-color: #e2ebec;
+  }
+  
 </style>

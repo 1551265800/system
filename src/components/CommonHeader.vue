@@ -56,6 +56,7 @@ header {
 .l-container {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     .el-button {
         margin-right: 20px;

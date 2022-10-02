@@ -24,6 +24,7 @@ import CommonAside from '../components/CommonAside.vue';
     height: 100%;
     flex-wrap: wrap;
     align-items: flex-start;
+
 }
 
 .common-layout{
@@ -34,9 +35,9 @@ import CommonAside from '../components/CommonAside.vue';
             height: 100%;
             background-color: #f3f3f3;
         }
-        .el-main{
-            height: 100%;
-        }
+        /* .el-main{
+            height: 150%;
+        } */
     }
 }
 </style>

@@ -11,5 +11,21 @@ export default {
             data:params,
             mock:true,
         })
+    },
+    getCountData(params){
+        return request({
+            url:'/home/getCountData',
+            method:"get",
+            data:params,
+            mock:true,
+        })
+    },
+    getOrderData(params){
+        return request({
+            url:'/home/getCharData',
+            method:"get",
+            data:params,
+            mock:true,
+        })
     }
 }

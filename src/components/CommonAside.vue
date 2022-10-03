@@ -1,19 +1,15 @@
 <template>
     <el-aside :width='$store.state.isCollapse?"180px":"64px"'>
-        <el-menu 
-        class="el-menu-vertical-demo aside" 
-        :collapse="!$store.state.isCollapse"
-        :collapse-transition="false"> 
-        <h3 v-show="$store.state.isCollapse">后台管理</h3>
-        <h3 v-show="!$store.state.isCollapse">后台</h3>
+        <el-menu class="el-menu-vertical-demo aside" :collapse="!$store.state.isCollapse" :collapse-transition="false">
+            <h3 v-show="$store.state.isCollapse" @click="gotoHome">后台管理</h3>
+            <h3 v-show="!$store.state.isCollapse">后台</h3>
             <el-menu-item :index="item.path" v-for="item in noChildren()" :key="item.path" @click="clickMenu(item)">
                 <el-icon>
                     <component class="icons" :is="item.icon"></component>
                 </el-icon>
                 <span>{{item.lable}}</span>
             </el-menu-item>
-            <el-sub-menu :index="item.path" v-for="item in hasChildren()" :key="item.path"
-            >
+            <el-sub-menu :index="item.path" v-for="item in hasChildren()" :key="item.path">
                 <template #title>
                     <el-icon>
                         <component class="icons" :is="item.icon"></component>
@@ -21,7 +17,8 @@
                     <span>{{item.lable}}</span>
                 </template>
                 <el-menu-item-group style="background-color: #f3f3f3; ">
-                    <el-menu-item :index="subItem.path" v-for="(subItem,subIndex) in item.children" :key="subIndex" @click="clickMenu(subItem)">
+                    <el-menu-item :index="subItem.path" v-for="(subItem,subIndex) in item.children" :key="subIndex"
+                        @click="clickMenu(subItem)">
                         <el-icon>
                             <component class="icons" :is="subItem.icon"></component>
                         </el-icon>
@@ -35,10 +32,17 @@
 </template>
 
 <script>
-    import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 export default {
     setup() {
+        const store = useStore()
         const router = useRouter()
+        //点击后台管理跳转到首页
+        const gotoHome = ()=>{
+            router.push("/home");
+            store.commit("selectMenu", "home")
+        }
         const list = [
             {
                 path: '/user',
@@ -76,37 +80,44 @@ export default {
         const hasChildren = () => {
             return list.filter(item => item.children)
         };
-        const clickMenu = (item)=>{
+        const clickMenu = (item) => {
             router.push({
-                name:item.name
+                name: item.name
             });
-        }
+            //vuex 管理
+            store.commit("selectMenu", item)
+        };
         return {
             noChildren,
             hasChildren,
-            clickMenu
+            clickMenu,
+            gotoHome
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
-.aside{
+.aside {
     background-color: #f3f3f3;
     overflow: hidden;
 }
-.icons{
+
+.icons {
     width: 18px;
     height: 18px;
 }
-.el-menu{
+
+.el-menu {
     border-right: none;
-    h3{
+
+    h3 {
         line-height: 48px;
         text-align: center;
     }
 }
-.el-aside{
+
+.el-aside {
     height: 100%;
     display: flex;
 }

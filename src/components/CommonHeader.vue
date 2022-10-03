@@ -7,7 +7,11 @@
                     <Menu />
                 </el-icon>
             </el-button>
-            <h3>首页</h3>
+            <el-breadcrumb separator="/" class="bread">
+                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                <el-breadcrumb-item :to="current" v-if="current">{{current.name}}</el-breadcrumb-item>
+                
+            </el-breadcrumb>
         </div>
         <div class="r-container">
             <el-dropdown>
@@ -26,9 +30,13 @@
 </template>
 
 <script setup>
+import { computed } from "@vue/reactivity";
 import { reactive } from "vue";
 import { useStore } from "vuex"
-let store = reactive(useStore())
+let store = useStore()
+const current = computed(()=>{
+    return store.state.currentMenu;
+})
 function getImgSrc(user) {
     return new URL(`../assets/${user}.jpg`, import.meta.url).href
 }
@@ -44,7 +52,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: #333;
+    background-color: #63bbd0;
 }
 
 .userImg img {
@@ -66,4 +74,7 @@ header {
         color: #fff;
     }
 }
+.bread /deep/ span{
+    cursor: pointer !important;
+} 
 </style>

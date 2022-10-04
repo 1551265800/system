@@ -2,7 +2,15 @@ import { createStore } from "vuex"
 export default createStore({
     state: {
         isCollapse: true,
-        currentMenu: null
+        currentMenu: null,
+        tabsList:[
+            {
+                path:'/',
+                name:'home',
+                lable:'首页',
+                icon:"home"
+            }
+        ]
     },
     mutations: {
         updataIsCollapse(state, payload) {

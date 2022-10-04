@@ -74,7 +74,7 @@ header {
         color: #fff;
     }
 }
-.bread /deep/ span{
+:deep(.bread span){
     cursor: pointer !important;
-} 
+}
 </style>

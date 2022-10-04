@@ -1,4 +1,8 @@
 <script setup>
+import { useStore } from 'vuex';
+
+  const userstore = useStore()
+  userstore.commit("addMenu");
 </script>
 
 <template>

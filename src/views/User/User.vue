@@ -38,7 +38,7 @@
             </el-form-item>
         </el-form>
     </div>
-    <el-table :data="tableData" style="width: 100%;height: 550px;" class="table">
+    <el-table :data="tableData" style="width: 100%;height: 700px;" class="table">
         <el-table-column fixed prop="name" label="姓名" width="120" />
         <el-table-column prop="date" label="出生日期" width="150" />
         <el-table-column prop="zip" label="性别" width="120" />
@@ -192,6 +192,46 @@ const tableData = [
         zip: '男',
         tag: 'Office',
     },
+    {
+        date: '2022-05-02',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: '男',
+        tag: 'Office',
+    },
+
+    {
+        date: '2022-05-02',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: '男',
+        tag: 'Office',
+    },
+
+    {
+        date: '2022-05-02',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: '男',
+        tag: 'Office',
+    },
+
+    {
+        date: '2022-05-02',
+        name: 'Tom',
+        state: 'California',
+        city: 'Los Angeles',
+        address: 'No. 189, Grove St, Los Angeles',
+        zip: '男',
+        tag: 'Office',
+    },
+
 
 ]
 function handerSerch() {

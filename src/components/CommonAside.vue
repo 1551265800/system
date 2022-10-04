@@ -43,6 +43,7 @@ export default {
             router.push("/home");
             store.commit("selectMenu", "home")
         }
+        const asyncList = store.state.menu
         const list = [
             {
                 path: '/user',
@@ -75,10 +76,10 @@ export default {
         ]
         //判断是否有二级菜单
         const noChildren = () => {
-            return list.filter(item => !item.children)
+            return asyncList.filter(item => !item.children)
         };
         const hasChildren = () => {
-            return list.filter(item => item.children)
+            return asyncList.filter(item => item.children)
         };
         const clickMenu = (item) => {
             router.push({

@@ -10,7 +10,8 @@ export default createStore({
                 lable:'首页',
                 icon:"home"
             }
-        ]
+        ],
+        menu:[]
     },
     mutations: {
         updataIsCollapse(state, payload) {
@@ -18,6 +19,17 @@ export default createStore({
         },
         selectMenu(state, val) {
             val.name == "home" ? (state.currentMenu = null) : (state.currentMenu = val)
+        },
+        setMenu(state,val){
+            state.menu = val
+            localStorage.setItem("menu",JSON.stringify(val))
+        },
+        addMenu(state){
+            if (!localStorage.getItem("menu")) {
+                return
+            }
+            const menu = JSON.parse(localStorage.getItem("menu"))
+            state.menu = menu
         }
     },
     

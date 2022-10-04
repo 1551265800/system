@@ -15,7 +15,7 @@
                 </div>
 
             </el-card>
-            <el-card shadow="hover" style="margin-top: 20px; ">
+            <el-card shadow="hover" style="margin-top: 20px;">
                 <el-table :data="tableData">
                     <el-table-column v-for="(val,key) of tableLabel" :key="key" :prop="key" :label="val">
                     </el-table-column>
@@ -35,8 +35,8 @@
             </div>
 
             <div>
-                <el-card style="height: 350px; margin-top: 20px;">
-                    <div id="myEchartOne" style="height: 300px;"></div>
+                <el-card style="height: 250px; margin-top: 20px;">
+                    <div id="myEchartOne" style="height: 250px;"></div>
                 </el-card>
             </div>
             <div class="graph">
@@ -298,8 +298,8 @@ onMounted(() => {
     }
 
     .icons {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         font-size: 30px;
         text-align: center;
         line-height: 80px;
@@ -311,10 +311,8 @@ onMounted(() => {
         margin-left: 15px;
         float: left;
         position: relative;
-        top: 10px;
-
         .money {
-            font-size: 30px;
+            font-size: 25px;
             margin-bottom: 10px;
         }
 

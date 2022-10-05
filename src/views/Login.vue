@@ -33,6 +33,7 @@ export default {
             const res = await api.getMenu(loginForm)
             /* console.log(res.menu); */
             store.commit("setMenu",res.menu)
+            store.commit("setToken",res.token)
             //l路由跳转
             router.push({
                 name:"home"

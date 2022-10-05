@@ -21,7 +21,7 @@
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item>个人中心</el-dropdown-item>
-                        <el-dropdown-item>退出</el-dropdown-item>
+                        <el-dropdown-item @click="handerLoginOut">退出</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -32,6 +32,7 @@
 <script setup>
 import { computed } from "@vue/reactivity";
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex"
 let store = useStore()
 const current = computed(()=>{
@@ -43,6 +44,16 @@ function getImgSrc(user) {
 function handleCollapse() {
     //调用vuex中的mutations
     store.commit("updataIsCollapse")
+}
+//登出
+const router =useRouter()
+function handerLoginOut() {
+    store.commit("cleanMenu")
+    store.commit("clearToken")
+
+    router.push({
+        name:"login"
+    })
 }
 </script>
 
